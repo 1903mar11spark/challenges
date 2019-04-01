@@ -22,6 +22,7 @@ If the start and end string are the same, return 0.
 Example:
 
 start: "AACCGGTT"
+		AACCGGTA
 end:   "AAACGGTA"
 bank: ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
 
