@@ -20,8 +20,7 @@ public class CoreJavaChallenge {
 		            
 		        }
 		}
-		
-		
+				
 		
 		if (counter == 7) {
 			return compare;
@@ -35,12 +34,11 @@ public class CoreJavaChallenge {
 	}
 	
 	
-	
-	
 	public static int coreJavaChallenges(String start, String[] bank, String end) {
 		
 		String test2=end.replaceAll("[^a,g,t,c]", "");
 		String test=start.replaceAll("[^a,g,t,c]", "");
+		
 		if(test.length()!=8||test2.length()!=8) {
 			return -1;
 		}
@@ -72,34 +70,20 @@ public class CoreJavaChallenge {
 		}
 		if(comparing.equals(end)) {
 			
-			return retrun;}
+			return retrun;
+		}
 		else return -1; 
 		}
 	}
 	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
 
 
 	public static void main(String[] args) {
+		
 		String[] banking = {"aaaaaaag",  "aaaaaagg","aaaaaggg","aaaagggg"};
 		
-		
-		//CoreJavaChallenges("acgtacgt", banking, "agtcagtc");
 		coreJavaChallenges("aaaaaaaa", banking, "aaaggggg");
+		
 		System.out.println(coreJavaChallenges("aaaaaaaa", banking, "aaaggggg"));
 		
 	}
