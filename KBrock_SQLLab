@@ -1,0 +1,200 @@
+-- 4/4/2019 - CHINOOK DB HW
+-- PART 2 - SQL QUERIES
+
+-- 2.1 - SELECT 
+
+--  Task – Select all records from the Employee table.
+SELECT * FROM EMPLOYEE;
+/
+--  Task – Select all records from the Employee table where last name is King.
+SELECT * FROM EMPLOYEE WHERE LASTNAME = 'King';
+/
+--  Task – Select all records from the Employee table where first name is Andrew and REPORTSTO is NULL.
+SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
+/
+-- 2.2 - ORDER BY
+
+--  Task – Select all albums in Album table and sort result set in descending order by title.
+SELECT * FROM ALBUM
+ORDER BY TITLE DESC;
+/
+--  Task – Select first name from Customer and sort result set in ascending order by city
+SELECT FIRSTNAME FROM CUSTOMER
+ORDER BY CITY ASC;
+/
+-- 2.3  INSERT INTO
+
+--Task – Insert two new records into Genre table
+INSERT INTO GENRE 
+VALUES(26, 'Squawk Rawk');
+/
+INSERT INTO GENRE 
+VALUES(27, 'Squibble');
+/
+--Task – Insert two new records into Employee table
+INSERT INTO EMPLOYEE
+VALUES(9, 'Smith', 'Joanna', 'IT Staff', 6, '1-JAN-1990', '2-FEB-2015', '123 OAK STREET', 'Somewhere', 'AB', 'Canada', 'T1H 1Y8','+1 (780) 428-9482', '+1 (780) 428-9483', 'someone@gmail.com'); 
+/
+INSERT INTO EMPLOYEE
+VALUES(10, 'Jones', 'Henry', 'IT Staff', 6, '24-FEB-1985', '2-FEB-2017', '234 PINE STREET', 'Somewhere', 'AB', 'Canada', 'T1H 1Y8','+1 (780) 428-9484', '+1 (780) 428-9485', 'someoneelse@gmail.com');
+/
+--Task – Insert two new records into Customer table
+INSERT INTO CUSTOMER
+VALUES(60, 'Sanders', 'John','BigCorp', '123 Main St.', 'Somewhere', 'FL', '33631', 'USA',
+'+1 (817) 924-7273', '+1 (817) 924-7272','me@example.com', 5);
+INSERT INTO CUSTOMER
+VALUES(61,'Nickelson', 'Nick', 'MediumCorp', '122 Main St.', 'Somewhere', 'FL', '33631', 'USA',
+'+1 (817) 924-7274', '+1 (817) 924-7277','metoo@example.com', 5);
+/
+
+--2.4 - UPDATE
+--Task – Update Aaron Mitchell in Customer table to Robert Walter
+UPDATE CUSTOMER 
+SET FIRSTNAME = 'Robert', LASTNAME = 'Walter'
+WHERE FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';
+/
+--Task – Update name of artist in the Artist table "Creedence Clearwater Revival" to "CCR"
+UPDATE ARTIST
+SET NAME = 'CCR' WHERE NAME = 'Creedence Clearwater Revival';
+/
+
+--2.5 LIKE
+--Task – Select all invoices with a billing address like “T%”
+SELECT * FROM INVOICE
+WHERE BILLINGADDRESS LIKE 'T%';
+/
+
+--2.6 BETWEEN
+--Task – Select all invoices that have a total between 15 and 50
+SELECT * FROM INVOICE
+WHERE TOTAL BETWEEN 15 AND 50;
+/
+--Task – Select all employees hired between 1 st of June 2003 and 1 st of March 2004
+SELECT * FROM EMPLOYEE
+WHERE HIREDATE BETWEEN '01-JUN-2003' AND '01-MAR-2004';
+/
+--2.7 DELETE
+--Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints
+--  that rely on this, find out how to resolve them).
+ALTER TABLE INVOICE DROP CONSTRAINT FK_INVOICECUSTOMERID;
+DELETE FROM CUSTOMER WHERE FIRSTNAME='Robert' AND LASTNAME='Walter';
+/
+--3.1 SYSTEM DEFINED FUNCTIONS
+--Task – Create a function that returns the current time.
+SELECT TO_CHAR(SYSDATE, 'HH24:MI') FROM dual;
+/
+--Task – create a function that returns the length of name in MEDIATYPE table
+SELECT NAME, LENGTH(NAME) FROM MEDIATYPE
+WHERE MEDIATYPEID = '5'
+GROUP BY NAME;
+/
+
+--3.2 System Defined Aggregate Functions
+--Task – Create a function that returns the avg total of all invoices
+SELECT AVG(TOTAL) FROM INVOICE;
+/
+--Task – Create a function that returns the most expensive track
+SELECT NAME, UNITPRICE FROM TRACK
+WHERE UNITPRICE = (SELECT MAX(UNITPRICE) FROM TRACK)
+ORDER BY NAME;
+/
+
+--3.3 User Defined Scalar Functions
+--Task – Create a function that returns the average price of invoiceline items in the invoiceline table
+
+CREATE OR REPLACE FUNCTION INVOICELINE_AVERAGE
+RETURN FLOAT
+IS ITEM_AVG FLOAT;
+BEGIN
+    SELECT AVG(UNITPRICE) INTO ITEM_AVG FROM INVOICELINE;
+    RETURN ITEM_AVG;
+END; 
+/
+SELECT INVOICELINE_AVERAGE FROM DUAL;
+/
+
+--3.4 User Defined Table Valued Functions
+CREATE OR REPLACE FUNCTION EMPLOYEE_AFTER_1968 RETURN SYS_REFCURSOR
+AS EMPLOYEE_CUR SYS_REFCURSOR;
+BEGIN
+  OPEN EMPLOYEE_CUR FOR 
+  SELECT * FROM EMPLOYEE WHERE
+  BIRTHDATE >= TO_DATE('1968','YYYY');
+  RETURN EMPLOYEE_CUR;
+END;
+/
+SELECT EMPLOYEE_AFTER_1968 FROM DUAL;
+/
+
+--
+
+---not done stuff 4, 5
+
+--
+
+--6.1 AFTER/FOR
+--Task - Create an after insert trigger on the employee table fired after a new record is inserted into the table.
+CREATE OR REPLACE TRIGGER NEWEMP
+AFTER INSERT ON EMPLOYEE FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('New employee record has been adeded.');
+END;
+/
+
+--Task - Create an after update trigger on the album table that fires after a row is inserted in the table
+CREATE OR REPLACE TRIGGER   NEWALBUM
+AFTER INSERT ON ALBUM FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('New album has been added.');
+END;
+/
+
+--Task - Create an after delete trigger on the customer table that fires after a row is deleted from the table.
+CREATE OR REPLACE TRIGGER DELETECUST
+AFTER DELETE ON CUSTOMER FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Customer has been deleted');
+END;
+/
+
+--7.1 INNER
+--Task - Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.CUSTOMERID 
+FROM CUSTOMER
+INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+/
+
+--7.2 OUTER
+--Task - Create an outer join that joins the customer and invoice table, 
+--specifying the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID, INVOICE.TOTAL 
+FROM CUSTOMER 
+FULL OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID 
+ORDER BY CUSTOMER.CUSTOMERID;
+/
+
+--7.3 RIGHT
+--Task - Create a right join that joins album and artist specifying artist name and title.
+SELECT ARTIST.NAME, ALBUM.TITLE 
+FROM ARTIST
+RIGHT JOIN ALBUM ON ARTIST.ARTISTID = ALBUM.ARTISTID;
+/
+
+--7.4 CROSS
+--Task - Create a cross join that joins album and artist and sorts by artist name in ascending order.
+SELECT ARTIST.NAME, ALBUM.TITLE 
+FROM ARTIST
+CROSS JOIN ALBUM 
+ORDER BY ARTIST.NAME ASC;
+/
+
+--7.5 SELF
+--Task - Perform a self-join on the employee table, joining on the reportsto column.
+SELECT A.EMPLOYEEID, A.REPORTSTO 
+FROM EMPLOYEE A, EMPLOYEE B
+WHERE A.REPORTSTO = B.REPORTSTO AND A.EMPLOYEEID = B.EMPLOYEEID;
+/
+
+
+
+
