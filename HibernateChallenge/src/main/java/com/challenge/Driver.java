@@ -1,8 +1,21 @@
 package com.challenge;
 
+import org.hibernate.*;
+import org.hibernate.SessionFactory;
+
+import com.challenge.beans.Department;
+import com.challenge.util.ConnectionUtil;
+
 public class Driver {
 
 	public static void main(String[] args) {
+		
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
+		System.out.println("asdasdad");
+		makeDepartment(sf);
+		
+		
+		
 		
 		/*
 		 * HIBERNATE CODE CHALLENGE: Employees and Departments
@@ -19,6 +32,17 @@ public class Driver {
 		 * indicating which step is expressed therein.
 		 */
 
+	}
+	
+	//dont do this here, create the DAO in the IMPL
+	static void makeDepartment(SessionFactory sf) {
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(new Department("Accounting"));
+		s.save( new Department("Sales"));
+		s.save( new Department("HumanResources"));
+		tx.commit();
+		s.close();
 	}
 
 }

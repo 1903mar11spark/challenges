@@ -1,5 +1,9 @@
 package com.challenge.beans;
 
+import javax.persistence.*;
+
+@Entity
+@Table (name= "DEPT")
 public class Department {
 
 	public Department() {
@@ -10,8 +14,21 @@ public class Department {
 		this.id = id;
 		this.name = name;
 	}
+	public Department(String name) {
+		super();
+		this.name = name;
+	}
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="deptSequence")
+	@SequenceGenerator(allocationSize = 5, name = "deptSequence", sequenceName="SQ_DEPT_PK")
+	@Column(name = "DEPT_ID")
 	private int id;
+	
+	@Column(name = "NAME")
 	private String name;
+	
 	public int getId() {
 		return id;
 	}
