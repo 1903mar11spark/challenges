@@ -50,7 +50,6 @@ public class Employee {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "DEPT_ID")
-	@Column(name = "DEPARTMENT")
 	private Department department;
 	
 	
