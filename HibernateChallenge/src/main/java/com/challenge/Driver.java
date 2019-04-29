@@ -1,5 +1,14 @@
 package com.challenge;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import com.challenge.beans.Employee;
+import com.challenge.beans.Department;
+import com.revature.util.ConnectionUtil;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -16,7 +25,9 @@ public class Driver {
 		 * 		(a) populate at least three departments and six employees
 		 * 		(b) demonstrate retrieval, updating, and deleting of both types of entity 
 		 */
-
+		
+		
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
 	}
 
 }

@@ -1,5 +1,22 @@
 package com.challenge.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+
+@Entity // indicates that the class represents a DB entity.
+@Table(name = "EMPLOYEE") // use this if you want to change the name of the generated/mapped table
+
 public class Employee {
 
 	public Employee(int id, String firstName, String lastName, Department department) {
@@ -9,13 +26,28 @@ public class Employee {
 		this.lastName = lastName;
 		this.department = department;
 	}
+	
 	public Employee() {
 		super();
 	}
+	
+	@Id // indicates a primary key
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "empSequence")
+	@SequenceGenerator(allocationSize = 1, name = "empSequence", sequenceName = "SQ_EMP_PK")
+	@Column(name = "EMPLOYEE_ID")
 	private int id;
+	
+	@Column(name = "FIRST_NAME")
 	private String firstName;
+	
+	@Column(name = "LAST_NAME")
 	private String lastName;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "DEPARTMENT_ID")
 	private Department department;
+	
+	
 	public int getId() {
 		return id;
 	}
