@@ -1,5 +1,16 @@
 package com.challenge;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import com.revature.util.ConnectionUtil;
+//beans go here
+
 public class Driver {
 
 	public static void main(String[] args) {

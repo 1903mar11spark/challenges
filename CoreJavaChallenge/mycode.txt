@@ -1,0 +1,38 @@
+String clean = string.replaceAll("\\W", " ");
+		clean = clean.replaceAll("[A-z]", "");
+		int temp = 0;
+		int tempTwo = 0;
+		//boolean secondNumber =false;
+		double result=0;
+		String[] inputArray = clean.split("\\s");
+		System.out.println(Arrays.toString(inputArray));
+		for(int i =0; i< inputArray.length;i++) {
+			
+			if (inputArray[i].length() ==3) {
+				temp =  (Character.getNumericValue((inputArray[i].charAt(1))))*2;
+				if(temp >= 10) {
+					temp = temp -9;
+				}
+				
+				result =  result + (Character.getNumericValue(inputArray[i].charAt(0))) + temp +  (Character.getNumericValue(inputArray[i].charAt(2))) ;
+			}else if(inputArray[i].length() ==4) {
+				temp =  (Character.getNumericValue((inputArray[i].charAt(1))))*2;
+				tempTwo =  (Character.getNumericValue((inputArray[i].charAt(3))))*2;
+				
+				if(temp >= 10) {
+					temp = temp -9;
+				}
+
+				if(tempTwo >= 10) {
+					tempTwo = tempTwo -9;
+				}
+		
+				result = result + (Character.getNumericValue(inputArray[i].charAt(0))) + temp + (Character.getNumericValue((inputArray[i].charAt(2)))) + tempTwo;
+			}
+		}
+		System.out.println(result);
+		if(result%10==0) {
+			return true;
+		}else {
+			return false;
+		}
