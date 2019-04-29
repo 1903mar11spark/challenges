@@ -14,10 +14,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
-
-@NamedQueries({ @NamedQuery(name = "getAllEmps", query = "from Employee"), // notice this is HQL - not referencing
-	// tables/columns, but Java objects
-@NamedQuery(name = "getEmpsByDept", query = "from Employee where dept.id = :deptVar") })
+//
+//@NamedQueries({ @NamedQuery(name = "getAllEmps", query = "from Employee"), // notice this is HQL - not referencing
+//	// tables/columns, but Java objects
+//@NamedQuery(name = "getEmpsByDept", query = "from Employee where dept.id = :deptVar") })
 
 @Entity
 @Table(name = "EMPLOYEE")

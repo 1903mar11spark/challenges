@@ -49,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	public void updateEmployee(Employee employee) {
-		Session s = sf.getCurrentSession()) {
+		try(Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
 			s.update(employee);
 			tx.commit();

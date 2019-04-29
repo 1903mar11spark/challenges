@@ -1,9 +1,9 @@
 package com.challenge;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
+import com.challenge.DAO.DepartmentDAO;
+import com.challenge.DAO.DepartmentDAOImpl;
 import com.challenge.DAO.EmployeeDAO;
 import com.challenge.DAO.EmployeeDAOImpl;
 import com.challenge.beans.Department;
@@ -32,10 +32,13 @@ public class Driver {
 		 * indicating which step is expressed therein.
 		 */
 		SessionFactory sf = ConnectionUtil.getSessionFactory();
-//				EmployeeDAO bd = new EmployeeDAOImpl();
-//				Department a = new Department(1, "Archery");
-//				Employee b = new Employee(1, "Emily", "Baillie", a);
-//				bd.updateEmployee(b);
+		
+				EmployeeDAO bd = new EmployeeDAOImpl();
+				DepartmentDAO db = new DepartmentDAOImpl();
+				Department a = new Department(1, "Archery");
+				db.createDepartment(a); 
+				Employee b = new Employee(1, "Emily", "Baillie", a);
+				bd.createEmployee(b);
 	}
 
 	
