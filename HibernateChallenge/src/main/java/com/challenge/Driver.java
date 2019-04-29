@@ -15,6 +15,8 @@ public class Driver {
 		 * 4. use your DAO methods in this class to 
 		 * 		(a) populate at least three departments and six employees
 		 * 		(b) demonstrate retrieval, updating, and deleting of both types of entity 
+		 * After each numbered step is complete, be sure to push it to your branch with a commit message
+		 * indicating which step is expressed therein.
 		 */
 
 	}
