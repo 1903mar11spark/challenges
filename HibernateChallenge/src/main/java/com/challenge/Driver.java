@@ -1,7 +1,15 @@
 package com.challenge;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.challenge.beans.Department;
+import com.revature.utl.ConnectionUtil;
+
 public class Driver {
 
+	//main method 
 	public static void main(String[] args) {
 		
 		/*
@@ -18,7 +26,24 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
+		
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
+
+		Session s = sf.openSession();
+		
+		Transaction tx = s.beginTransaction();
+
+		Department d1 = new Department(1, "Accounting");  
+		s.save(d1); 
+		
+		
+		tx.commit();
+		
+		s.close();
 
 	}
+	
+	//other methods here
+	
 
 }
