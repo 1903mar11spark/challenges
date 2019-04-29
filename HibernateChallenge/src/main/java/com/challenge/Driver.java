@@ -1,5 +1,26 @@
 package com.challenge;
 
+
+import com.challenge.beans.Employee;
+import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.challenge.DAO.DepartmentDAO;
+import com.challenge.DAO.DepartmentDAOImpl;
+import com.challenge.beans.Department;
+import com.challenge.util.ConnectionUtil;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.challenge.beans.Department;
+import com.challenge.beans.Employee;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -18,7 +39,51 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
+		
+		
 
+	}
+	
+	static void makeDepartments(SessionFactory sf) {
+		Department d = new Department();
+		DepartmentDAO ddao = new DepartmentDAOImpl();
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(new Department(1, "guitars"));
+		s.save(new Department(2, "vocals"));
+		s.save(new Department(3, "bass"));
+		s.save(new Department(4, "drums"));
+		tx.commit();
+		s.close();
+	}
+	
+	
+	
+	static void makeEmployees(SessionFactory sf) {
+		Department g = new Department();
+		Department v = new Department();
+		Department b = new Department();
+		Department d = new Department();
+
+		
+
+		DepartmentDAO ddao = new DepartmentDAOImpl();
+		g = ddao.getById(1);
+		v = ddao.getById(2);
+		b = ddao.getById(3);
+		d = ddao.getById(4);
+
+		
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(new Employee(1, "Ace", "Frehley", g));
+		s.save(new Employee(2, "Vince", "Neil", v));
+		s.save(new Employee(3, "Mick", "Mars", g));
+		s.save(new Employee(4, "Gene", "Simmons", b));
+		s.save(new Employee(5, "Tommy", "Lee", d));
+		
+		tx.commit();
+		s.close();
 	}
 
 }
