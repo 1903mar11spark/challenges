@@ -46,7 +46,7 @@ public class Driver {
 			
 		//Add employees
 		
-		Department heroics = new Department (1);
+		/*Department heroics = new Department (1);
 		Department support = new Department (2);
 		Department management = new Department (3);
 		
@@ -61,11 +61,38 @@ public class Driver {
 		emp = new Employee("Bruce", "Banner", support);
 		eDAO.createEmployee(emp);
 		emp = new Employee("Nick", "Fury", management);
-		eDAO.createEmployee(emp);
+		eDAO.createEmployee(emp);*/
 		
+		List<Department> deptList = dDAO.getAll();
+		for (Department d : deptList) {
+			System.out.println(d);
+		}
 		
+		Department dep = new Department(2);
+		List<Employee> empList = eDAO.getByDepartment(dep);
+		for (Employee e : empList) {
+			System.out.println(e);
+		}
 		
-
+		/*Department dept = new Department (3,"Agent");
+		dDAO.updateDepartment(dept);*/
+		
+		Department depto = new Department (1);
+		Employee emp = new Employee(3 ,"Peter", "Parker", depto);
+		eDAO.updateEmployee(emp);
+		
+		Department depa = new Department (4);
+		dDAO.deleteDepartment(depa);
+		
+		depa = new Department (5);
+		dDAO.deleteDepartment(depa);
+		
+		depa = new Department (6);
+		dDAO.deleteDepartment(depa);
+		
+		depto = new Department (2);
+		emp = new Employee(4 ,"Tony", "Stark", depto);
+		eDAO.deleteEmployee(emp);
 	}
 
 }
