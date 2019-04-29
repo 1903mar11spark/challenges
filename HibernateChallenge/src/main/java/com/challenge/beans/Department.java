@@ -1,5 +1,15 @@
 package com.challenge.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "DEPARTMENT")
 public class Department {
 
 	public Department() {
@@ -10,8 +20,20 @@ public class Department {
 		this.id = id;
 		this.name = name;
 	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "deptSequence")
+	@SequenceGenerator(allocationSize = 1, name = "deptSequence", sequenceName = "SQ_DEPT_PK")
+	@Column(name = "DEPT_ID")
 	private int id;
+	
+	@Column(name = "DEPT_NAME")
 	private String name;
+	
+	@Column(name = "MAX_EMPS")
+	private int maxEmps;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -24,9 +46,16 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + "]";
+		return "Department [id=" + id + ", name=" + name + ", maxEmps=" + maxEmps + "]";
+	}
+	public int getMaxEmps() {
+		return maxEmps;
+	}
+	public void setMaxEmps(int maxEmps) {
+		this.maxEmps = maxEmps;
 	}
 	
 }
