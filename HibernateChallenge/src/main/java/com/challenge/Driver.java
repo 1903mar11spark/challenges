@@ -8,11 +8,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import com.challenge.DAO.DepartmentDAOImpl;
+import com.challenge.DAO.EmployeeDAOImpl;
+import com.challenge.beans.Department;
+import com.challenge.beans.Employee;
 import com.revature.util.ConnectionUtil;
 //beans go here
 
 public class Driver {
 
+	static EmployeeDAOImpl eDAO = new EmployeeDAOImpl();
+	static DepartmentDAOImpl dDAO = new DepartmentDAOImpl();
+	
 	public static void main(String[] args) {
 		
 		/*
@@ -29,6 +36,35 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
+		//Create departments
+		/*Department dept = new Department ("Heroics");
+		dDAO.createDepartment(dept);
+		dept = new Department ("Support");
+		dDAO.createDepartment(dept);
+		dept = new Department ("Management");
+		dDAO.createDepartment(dept);*/
+			
+		//Add employees
+		
+		Department heroics = new Department (1);
+		Department support = new Department (2);
+		Department management = new Department (3);
+		
+		Employee emp = new Employee("Thor", "Odinson", heroics);
+		eDAO.createEmployee(emp);
+		emp = new Employee("Steve", "Rogers",heroics );
+		eDAO.createEmployee(emp);
+		emp = new Employee("Peter", "Parker", support);
+		eDAO.createEmployee(emp);
+		emp = new Employee("Tony", "Stark", support);
+		eDAO.createEmployee(emp);
+		emp = new Employee("Bruce", "Banner", support);
+		eDAO.createEmployee(emp);
+		emp = new Employee("Nick", "Fury", management);
+		eDAO.createEmployee(emp);
+		
+		
+		
 
 	}
 

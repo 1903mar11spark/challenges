@@ -2,13 +2,18 @@ package com.challenge.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.challenge.beans.Department;
 
 @NamedQueries({ @NamedQuery(name = "getAllEmployees", query = "from Employee")})
 
@@ -24,9 +29,17 @@ public class Employee {
 		this.lastName = lastName;
 		this.department = department;
 	}
+	public Employee(String firstName, String  lastName, Department department) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+	}
 	public Employee() {
 		super();
+	
 	}
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "employeeId")
@@ -40,7 +53,8 @@ public class Employee {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "DEPARTMENT")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "DEPARTMENT")
 	private Department department;
 	
 	

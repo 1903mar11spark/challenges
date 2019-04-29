@@ -9,10 +9,10 @@ import org.hibernate.query.Query;
 
 
 import com.challenge.beans.Department;
-
+import com.challenge.DAO.DepartmentDAO;
 import com.revature.util.ConnectionUtil;
 
-public class DepartmentDAOImpl {
+public class DepartmentDAOImpl implements DepartmentDAO{
 	
 	SessionFactory sf = ConnectionUtil.getSessionFactory();
 	

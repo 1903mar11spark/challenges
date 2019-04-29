@@ -22,12 +22,23 @@ public class Department {
 	public Department() {
 		super();
 	}
+	
+	public Department(String name) {
+		super();
+		this.name = name;
+	}
+	
 	public Department(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 	
+	public Department(int id) {
+		super();
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "departmentId")
 	@SequenceGenerator(allocationSize = 1, name = "departmentId", sequenceName = "SQ_DEPARTMENT_PK")

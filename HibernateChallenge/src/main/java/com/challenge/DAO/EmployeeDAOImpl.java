@@ -11,19 +11,19 @@ import com.challenge.beans.Department;
 import com.challenge.beans.Employee;
 import com.revature.util.ConnectionUtil;
 
-public class EmployeeDAOImpl {
+public class EmployeeDAOImpl implements EmployeeDAO{
 	
-	SessionFactory sf = ConnectionUtil.getSessionFactory();
+	SessionFactory sfc = ConnectionUtil.getSessionFactory();
 	
 	public Employee getById(int id) {
-		Session s = sf.openSession();
+		Session s = sfc.openSession();
 		Employee emp = new Employee();
 		emp = s.get(Employee.class, id);
 		s.close();
 		return emp;
 	}
 	public List<Employee> getByDepartment(Department department){
-		Session s = sf.openSession();
+		Session s = sfc.openSession();
 		Query q = s.getNamedQuery("getAllEmployees");
 		List<Employee> empList = q.getResultList();
 		s.close();
@@ -31,21 +31,21 @@ public class EmployeeDAOImpl {
 	}
 	
 	public void createEmployee(Employee employee) {
-		Session s = sf.openSession();
+		Session s = sfc.openSession();
 		Transaction tx = s.beginTransaction();
 		s.save(employee);
 		tx.commit();
 		s.close();
 	}
 	public void updateEmployee(Employee employee) {
-		Session s = sf.openSession();
+		Session s = sfc.openSession();
 		Transaction tx = s.beginTransaction();
 		s.update(employee);
 		tx.commit();
 		s.close();
 	}
 	public void deleteEmployee(Employee employee) {
-		Session s = sf.openSession();
+		Session s = sfc.openSession();
 		Transaction tx = s.beginTransaction();
 		s.delete(employee);
 		tx.commit();
