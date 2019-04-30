@@ -3,6 +3,7 @@ package com.challenge.beans;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,13 +24,13 @@ public class Department {
 	}
 	
 	@Id
-	@GeneratedValue
-	//@SequenceGenerator
+	@GeneratedValue (strategy = GenerationType.AUTO, generator = "deptSequence")
+	@SequenceGenerator (allocationSize=1, name="deptSequence", sequenceName = "SQ_DEPT_PK")
 	@Column(name="DEPT_ID")
 
 	private int id;
 	
-	@Column
+	@Column(name="DEPT_NAME")
 
 	private String name;
 
