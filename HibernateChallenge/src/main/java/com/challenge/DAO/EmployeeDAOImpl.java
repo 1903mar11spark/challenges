@@ -1,7 +1,8 @@
 package com.challenge.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,15 +28,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	public List<Employee> getByDepartment(Department department) {
-		List<Employee> emps = new ArrayList<>();
-		// use a Query to retrieve all caves
-		try (Session s = sf.getCurrentSession()) {
-			Transaction tx = s.beginTransaction();
-			emps = s.createQuery("from Emps").getResultList();
-			tx.commit();
-			s.close();
-		}
-		return emps;
+		Session s = sf.openSession();
+		Query q = s.getNamedQuery("getAllEmps");
+		List<Employee> empList = q.getResultList();
+		s.close();
+		return empList;
 	}
 
 	public void createEmployee(Employee employee) {

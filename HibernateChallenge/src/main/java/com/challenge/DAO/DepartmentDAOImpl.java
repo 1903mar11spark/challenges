@@ -1,7 +1,8 @@
 package com.challenge.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,25 +28,21 @@ public class DepartmentDAOImpl implements DepartmentDAO{
 	}
 
 	public List<Department> getAll() {
-		List<Department> depts = new ArrayList<>();
-		// use a Query to retrieve all caves
-		try (Session s = sf.getCurrentSession()) {
-			Transaction tx = s.beginTransaction();
-			depts = s.createQuery("from Dept").getResultList();
-			tx.commit();
-			s.close();
-		}
-		return depts;
+		Session s = sf.openSession();
+		Query q = s.getNamedQuery("getAllDepts");
+		List<Department> deptList = q.getResultList();
+	
+		return deptList;
+
 
 	}
 
 	public void createDepartment(Department department) {
-		try (Session s = sf.getCurrentSession()) {
-			Transaction tx = s.beginTransaction();
-			s.persist(department);
-			tx.commit();
-			s.close();
-		}
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(department);
+		tx.commit();
+		s.close();
 	}
 
 	public void updateDepartment(Department department) {

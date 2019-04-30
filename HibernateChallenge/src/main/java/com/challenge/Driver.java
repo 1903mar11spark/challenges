@@ -35,11 +35,26 @@ public class Driver {
 		
 				EmployeeDAO bd = new EmployeeDAOImpl();
 				DepartmentDAO db = new DepartmentDAOImpl();
-				Department a = new Department(1, "Archery");
+				Department a = new Department(3, "Sheild");
 				db.createDepartment(a); 
-				Employee b = new Employee(1, "Emily", "Baillie", a);
-				bd.createEmployee(b);
+				Employee f = new Employee("Rosco", "Stark", a);
+				bd.createEmployee(f);
+			
 	}
 
+	
+	//TO ASK ABOUT
+//	static void makeBats(SessionFactory sf) {
+//		Session s = sf.openSession();
+//		Transaction tx = s.beginTransaction();
+//		s.save(new Department(2, "Swords"));
+//		s.save(new Department(3, "Sheild"));
+////		s.save(new Employee("Chad", 40.0));
+////		s.save(new Employee("Batthew", 90.0));
+////		s.save(new Employee("Battholomew", 85.0));
+////		s.save(new Employee("Batty White", 200.0));
+//		tx.commit();
+//		s.close();
+//	}
 	
 }
