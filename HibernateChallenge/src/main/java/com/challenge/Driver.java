@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.challenge.beans.Department;
-import com.revature.utl.ConnectionUtil;
+import com.challenge.utl.ConnectionUtil;
 
 public class Driver {
 
@@ -34,6 +34,7 @@ public class Driver {
 		Transaction tx = s.beginTransaction();
 
 		Department d1 = new Department(1, "Accounting");  
+		
 		s.save(d1); 
 		
 		

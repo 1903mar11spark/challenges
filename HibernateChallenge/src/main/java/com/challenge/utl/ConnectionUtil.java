@@ -1,4 +1,4 @@
-package com.revature.utl;
+package com.challenge.utl;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,10 +18,15 @@ public class ConnectionUtil {
 			// if no SessionFactory has been created, create one
 			Configuration c = new Configuration(); 
 			// grab credentials and URL from environment variables 
-			c.setProperty("hibernate.connection.username", System.getenv("BEARS_DB_USERNAME"));
-			c.setProperty("hibernate.connection.password", System.getenv("BEARS_DB_PASS"));
-			c.setProperty("hibernate.connection.url", System.getenv("BEARS_DB_URL")); 
+			
+			System.out.println("hello1");
+			
+			c.setProperty("hibernate.connection.username", System.getenv("EMP2_DB_USERNAME"));
+			c.setProperty("hibernate.connection.password", System.getenv("EMP2_DB_PASS"));
+			c.setProperty("hibernate.connection.url", System.getenv("EMP2_DB_URL")); 
 			c.configure(); 
+			
+			System.out.println("hello1");
 			
 			sessionFactory = c.buildSessionFactory(); 
 
