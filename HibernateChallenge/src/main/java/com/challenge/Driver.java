@@ -1,5 +1,9 @@
 package com.challenge;
 
+import org.hibernate.SessionFactory;
+
+import com.challenge.util.ConnectionUtil;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -18,7 +22,7 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
-
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
 	}
 
 }
