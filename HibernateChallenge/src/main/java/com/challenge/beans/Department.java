@@ -20,6 +20,11 @@ public class Department {
 	}
 	
 	
+	public Department(int id) {
+		this.id = id;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="deptSequence")
 	@SequenceGenerator(allocationSize = 5, name = "deptSequence", sequenceName="SQ_DEPT_PK")

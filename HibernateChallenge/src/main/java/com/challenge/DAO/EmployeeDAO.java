@@ -7,10 +7,10 @@ import com.challenge.beans.Employee;
 
 public interface EmployeeDAO {
 	
-	public Employee getById(int id);
-	public List<Employee> getByDepartment(Department department);
-	public void createEmployee(Employee employee);
-	public void updateEmployee(Employee employee);
-	public void deleteEmployee(Employee employee);
+	public Employee getById(int id);								//works
+	public List<Employee> getByDepartment(Department department);	//works
+	public void createEmployee(Employee employee);					//works
+	public void updateEmployee(Employee employee);					//works
+	public void deleteEmployee(Employee employee);					//works
 
 }

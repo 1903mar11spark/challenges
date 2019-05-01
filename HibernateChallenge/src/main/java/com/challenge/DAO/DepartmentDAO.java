@@ -6,10 +6,10 @@ import com.challenge.beans.Department;
 
 public interface DepartmentDAO {
 
-	public Department getById(int id);
-	public List<Department> getAll();
-	public void createDepartment(Department department);
-	public void updateDepartment(Department department);
-	public void deleteDepartment(Department department);
+	public Department getById(int id);						//works
+	public List<Department> getAll();						//works
+	public void createDepartment(Department department);	//works
+	public void updateDepartment(Department department);	//works
+	public void deleteDepartment(Department department);	//works
 	
 }

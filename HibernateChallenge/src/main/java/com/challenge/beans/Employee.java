@@ -10,7 +10,17 @@ import javax.persistence.*;
 @Table(name = "EMP")
 public class Employee {
 	
-
+	public Employee(int id) {
+		super();
+		this.id = id;
+	}
+	public Employee( String firstName, String lastName, Department department) {
+		super();
+	
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+	}
 	public Employee(int id, String firstName, String lastName, Department department) {
 		super();
 		this.id = id;

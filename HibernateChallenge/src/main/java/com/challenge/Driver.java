@@ -1,19 +1,61 @@
 package com.challenge;
 
-import org.hibernate.*;
-import org.hibernate.SessionFactory;
-
-import com.challenge.beans.Department;
-import com.challenge.util.ConnectionUtil;
+import com.challenge.DAO.DepartmentDAOImpl;
+import com.challenge.DAO.EmployeeDAOImpl;
 
 public class Driver {
 
 	public static void main(String[] args) {
 		
-		SessionFactory sf = ConnectionUtil.getSessionFactory();
-		System.out.println("asdasdad");
-		makeDepartment(sf);
 		
+		DepartmentDAOImpl dd = new DepartmentDAOImpl();
+		EmployeeDAOImpl ed = new EmployeeDAOImpl();
+
+		
+//	GET BY DEPARTMENT	
+//		Department dep = new Department(1, "Accounting");
+//		System.out.println(ed.getByDepartment(dep));
+		
+// GET EMP BY ID		
+//		System.out.println(ed.getById(1));
+		
+// DELETE EMPLOYEE	
+//		Employee emp = new Employee(2);
+//		ed.deleteEmployee(emp);	
+		
+// UPDATE EMPLOYEE
+//		Department dep = new Department(1, "Accounting");
+//		Employee emp = new Employee(2, "Alfred", "Pennybags", dep);
+//		ed.updateEmployee(emp);	
+		
+// CREATE NEW EMPLOYEES
+//		Department dep = new Department(3, "Human Resources");
+//		Employee emp = new Employee("That", "Guy", dep);
+//		ed.createEmployee(emp);
+		
+		
+		
+		
+//GET BY ID		
+//		System.out.println(dd.getById(2));
+		
+// SHOW ALL DEPARTMENTS		
+//		System.out.println(dd.getAll());
+		
+//CREATE NEW DEPT
+//		Department dep = new Department ("Revature");
+//		dd.createDepartment(dep);
+//		System.out.println(dd.getAll());
+	
+//UPDATE DEPT
+//		Department dep = new Department (12, "RevaturePro");
+//		dd.updateDepartment(dep);
+//		System.out.println(dd.getAll());
+		
+//DELETE DEPT
+//		Department dep = new Department (12);
+//		dd.deleteDepartment(dep);
+//		System.out.println(dd.getAll());
 		
 		
 		
@@ -33,16 +75,4 @@ public class Driver {
 		 */
 
 	}
-	
-	//dont do this here, create the DAO in the IMPL
-	static void makeDepartment(SessionFactory sf) {
-		Session s = sf.openSession();
-		Transaction tx = s.beginTransaction();
-		s.save(new Department("Accounting"));
-		s.save( new Department("Sales"));
-		s.save( new Department("HumanResources"));
-		tx.commit();
-		s.close();
-	}
-
 }

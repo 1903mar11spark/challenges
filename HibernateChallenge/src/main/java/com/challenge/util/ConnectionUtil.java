@@ -20,10 +20,16 @@ public class ConnectionUtil {
 			Configuration c = new Configuration();
 
 			c.setProperty("hibernate.connection.username", System.getenv("BAT_DB_USER"));
+
+
 			c.setProperty("hibernate.connection.password", System.getenv("BAT_DB_PASS"));
+
 			c.setProperty("hibernate.connection.url", System.getenv("BAT_DB_URL"));
-			c.configure(); // by default, looking hibernate.cfg.xml in src/main/resources
+		
+			c.configure(); 
+			
 			sessionFactory = c.buildSessionFactory();
+		
 		}
 		return sessionFactory;
 	}

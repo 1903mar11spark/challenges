@@ -7,9 +7,7 @@
 	<session-factory>
 		<property name="hibernate.connection.driver.class">oracle.jdbc.driver.OracleDriver</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-
 		<property name="hibernate.show_sql">true</property>
-
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="com.challenge.beans.Employee"></mapping>
 		<mapping class="com.challenge.beans.Department"></mapping>
