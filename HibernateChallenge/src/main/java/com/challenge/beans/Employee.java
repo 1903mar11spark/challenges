@@ -41,6 +41,7 @@ public class Employee {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="D_ID")
 	private Department department;
+	
 	public int getId() {
 		return id;
 	}
