@@ -1,0 +1,9 @@
+<p>
+  questions works!
+</p>
+<ul *ngIf="responses$ | async as responses else noData">
+  <li *ngFor="let response of responses">
+      {{response.catagory}}
+  </li> 
+</ul>
+<ng-template #noData>No Data Available</ng-template>
