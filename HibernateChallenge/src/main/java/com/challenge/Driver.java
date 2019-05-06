@@ -1,8 +1,16 @@
 package com.challenge;
 
+import org.hibernate.SessionFactory;
+
+import com.challenge.DAO.DepDAOImpl;
+import com.challenge.DAO.DepartmentDAO;
+import com.challenge.beans.Department;
+import com.challenge.util.ConnectionUtil;
+
 public class Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		
 		/*
 		 * HIBERNATE CODE CHALLENGE: Employees and Departments
@@ -18,6 +26,22 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
+		
+			//SessionFactory sf = ConnectionUtil.getSessionFactory();
+	
+			DepartmentDAO deptDAO = new DepDAOImpl();
+			Department ceo = new Department(1, "CEO");
+			Department managers = new Department(2, "MANAGERS");
+			Department employees = new Department(3, "EMPLOYEES");
+			
+			deptDAO.createDepartment(ceo);
+			deptDAO.createDepartment(managers);
+			deptDAO.createDepartment(employees);
+			
+			DepDAOImpl dept = new DepDAOImpl();
+
+
+			System.out.println(dept.getAll());
 
 	}
 
