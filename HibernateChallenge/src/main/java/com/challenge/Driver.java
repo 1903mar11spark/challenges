@@ -11,6 +11,8 @@ import org.hibernate.SessionFactory;
 
 import com.challenge.DAO.DepartmentDAO;
 import com.challenge.DAO.DepartmentDAOImpl;
+import com.challenge.DAO.EmployeeDAO;
+import com.challenge.DAO.EmployeeDAOImpl;
 import com.challenge.beans.Department;
 import com.challenge.util.ConnectionUtil;
 
@@ -39,8 +41,22 @@ public class Driver {
 		 * After each numbered step is complete, be sure to push it to your branch with a commit message
 		 * indicating which step is expressed therein.
 		 */
-		
-		
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
+
+		        makeEmployees(sf);
+				//getAndLoad(sf);
+//				 DepartmentDAO dd = new DepartmentDAOImpl();
+//				 System.out.println(dd.getAll());
+//			
+		        
+		        EmployeeDAO ed = new EmployeeDAOImpl();
+				DepartmentDAO dd = new DepartmentDAOImpl();
+				Department g = new Department(1, "guitars");
+				dd.createDepartment(g); 
+				Employee mick = new Employee(1, "mick", "mars", g);
+				ed.createEmployee(mick);
+
+
 
 	}
 	

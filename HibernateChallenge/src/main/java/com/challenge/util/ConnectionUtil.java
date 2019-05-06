@@ -15,9 +15,9 @@ public class ConnectionUtil {
 			// if no SessionFactory has been created, create one
 			Configuration c = new Configuration();
 			// grab credentials and url from environment variables
-			c.setProperty("hibernate.connection.username", System.getenv("BEARS_DB_USERNAME"));
-			c.setProperty("hibernate.connection.password", System.getenv("BEARS_DB_PASS"));
-			c.setProperty("hibernate.connection.url", System.getenv("BEARS_DB_URL"));
+			c.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
+			c.setProperty("hibernate.connection.password", System.getenv("DB_PASS"));
+			c.setProperty("hibernate.connection.url", System.getenv("DB_URL"));
 			c.configure(); // by default, looking hibernate.cfg.xml in src/main/resources
 			sessionFactory = c.buildSessionFactory();
 		}
