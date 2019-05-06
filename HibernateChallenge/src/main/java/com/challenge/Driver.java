@@ -3,6 +3,7 @@ package com.challenge;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import com.challenge.beans.Employee;
@@ -25,9 +26,24 @@ public class Driver {
 		 * 		(a) populate at least three departments and six employees
 		 * 		(b) demonstrate retrieval, updating, and deleting of both types of entity 
 		 */
-		
-		
 		SessionFactory sf = ConnectionUtil.getSessionFactory();
+		
+		 try {
+	         sf = new Configuration().configure().buildSessionFactory();
+	      } catch (Throwable ex) { 
+	         System.err.println("Failed to create sessionFactory object." + ex);
+	         throw new ExceptionInInitializerError(ex); 
+	      }
+		 	makeEmp(sf);
 	}
+	
+	static void makeEmp(SessionFactory sf) {
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.save(new Employee("Germy", "Louis"));
+	
+		tx.commit();
+		s.close();
+}
 
 }

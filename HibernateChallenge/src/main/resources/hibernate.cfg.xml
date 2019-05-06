@@ -17,7 +17,10 @@
 		<property name="hibernate.show_sql">true</property>
 		<!-- choose whether to start fresh or update existing ddl -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
-			<property name = "hibernate.connection.url">
+		
+		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+		
+		<property name = "hibernate.connection.url">
          p1.c2uqqxqrwiyu.us-east-2.rds.amazonaws.com
     	</property>
       

@@ -18,7 +18,7 @@ public class ConnectionUtil {
 			c.getProperty("hibernate.connection.username");
 			c.getProperty("hibernate.connection.password");
 			c.getProperty("hibernate.connection.url");
-			c.configure(); // by default, looking hibernate.cfg.xml in src/main/resources
+			c.configure("hibernate.cfg.xml"); // by default, looking hibernate.cfg.xml in src/main/resources
 			sessionFactory = c.buildSessionFactory();
 		}
 		return sessionFactory;

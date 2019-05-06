@@ -27,6 +27,20 @@ public class Employee {
 		this.department = department;
 	}
 	
+	public Employee(String firstName, String lastName, Department department) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+	}
+
+	
+	public Employee(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public Employee() {
 		super();
 	}
