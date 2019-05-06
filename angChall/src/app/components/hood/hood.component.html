@@ -1,0 +1,6 @@
+<app-add-hood (addHood)="addHood($event)"></app-add-hood>
+<app-hood-item
+ *ngFor="let hood of hoods" [hood]="hood"
+ (deleteHood)="deleteHood($event)">
+ <li>{{ hood.name }}</li>
+</app-hood-item>

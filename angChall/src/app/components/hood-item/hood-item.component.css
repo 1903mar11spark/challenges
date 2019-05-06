@@ -1,0 +1,17 @@
+.del {
+    background: orange;
+    color: silver;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .todo {
+    background: teal;
+    padding: 10px;
+    border-bottom: 1px #ccc dotted;
+  }
+  
+ 
