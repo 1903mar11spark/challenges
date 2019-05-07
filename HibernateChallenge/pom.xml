@@ -3,9 +3,12 @@
   <groupId>com.challenge</groupId>
   <artifactId>HibernateChallenge</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-
+  
+  
+  
+  <!-- Java version -->
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.complier.source>1.8</maven.complier.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
@@ -15,19 +18,11 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0.2</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.0.Final</version>
 		</dependency>
-	
-		<dependency>
-		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.1-api</artifactId>
-		    <version>1.0.0.Final</version>
-		</dependency>
-
 	</dependencies>
-		
-		</project>
+
+</project>

@@ -4,7 +4,10 @@ import org.hibernate.SessionFactory;
 
 import com.challenge.DAO.DepDAOImpl;
 import com.challenge.DAO.DepartmentDAO;
+import com.challenge.DAO.EmpDAOImpl;
+import com.challenge.DAO.EmployeeDAO;
 import com.challenge.beans.Department;
+import com.challenge.beans.Employee;
 import com.challenge.util.ConnectionUtil;
 
 public class Driver {
@@ -29,19 +32,16 @@ public class Driver {
 		
 			//SessionFactory sf = ConnectionUtil.getSessionFactory();
 	
-			DepartmentDAO deptDAO = new DepDAOImpl();
-			Department ceo = new Department(1, "CEO");
-			Department managers = new Department(2, "MANAGERS");
-			Department employees = new Department(3, "EMPLOYEES");
-			
-			deptDAO.createDepartment(ceo);
-			deptDAO.createDepartment(managers);
-			deptDAO.createDepartment(employees);
-			
-			DepDAOImpl dept = new DepDAOImpl();
-
-
-			System.out.println(dept.getAll());
+		SessionFactory sf = ConnectionUtil.getSessionFactory();
+		
+		EmployeeDAO bd = new EmpDAOImpl();
+		DepartmentDAO db = new DepDAOImpl();
+		
+		Department a = new Department(1, "Revature");
+		db.createDepartment(a); 
+		
+		Employee f = new Employee("Shawn", "Currey", a);
+		bd.createEmployee(f);
 
 	}
 

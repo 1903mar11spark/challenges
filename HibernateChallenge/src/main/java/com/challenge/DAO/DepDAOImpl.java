@@ -1,84 +1,67 @@
 package com.challenge.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import com.challenge.beans.Department;
 import com.challenge.util.ConnectionUtil;
 
+
 public class DepDAOImpl implements DepartmentDAO{
+	
+	private SessionFactory sf = ConnectionUtil.getSessionFactory();
 
-	SessionFactory sf = ConnectionUtil.getSessionFactory();
-	
-	@Override
-	public List<Department> getAll() 
-	{
-		List<Department> list = new ArrayList<Department>();
-		Session s = sf.openSession();
+	public Department getById(int id) {
+		Department c = null;
+		try (Session s = sf.getCurrentSession()) {
 			Transaction tx = s.beginTransaction();
-			String hql = "FROM DEPARTMENT";
-			Query q = s.createQuery(hql);
-			
+			c = (Department) s.get(Department.class, id);
 			tx.commit();
-			s.close();
-			
-		return (List<Department>) q;
-		
-	}
-	
-	
-	
-	@Override
-	public Department getById(int id) 
-	{
-		Department x =null;
-		Session s = sf.openSession();
-			Transaction tx = s.beginTransaction();
-			x =s.get(Department.class, id);
-			tx.commit();
-		
-		return x;
+			// s.close();
+		}
+		return c;
 	}
 
-	@Override
-	public void createDepartment(Department department) 
-	{
+	public List<Department> getAll() {
+		Session s = sf.openSession();
+		Query q = s.getNamedQuery("getAllDepts");
+		List<Department> deptList = q.getResultList();
+	
+		return deptList;
+
+
+	}
+
+	public void createDepartment(Department department) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.save(department);
-	
-		tx.commit();
-		s.close();
-		
-	}
-
-	@Override
-	public void updateDepartment(Department department) 
-	{
-		Session s = sf.openSession();
-		Transaction tx = s.beginTransaction();
-		s.update(department);
-	
 		tx.commit();
 		s.close();
 	}
 
-	
-	@Override
-	public void deleteDepartment(Department department) 
-	{
+	public void updateDepartment(Department department) {
+		try ( Session s = sf.getCurrentSession()) {
+			Transaction tx = s.beginTransaction();
+			s.update(department);
+			tx.commit();
+			s.close();
+		}	
+	}
+
+	public void deleteDepartment(Department department) {
+		try (Session s = sf.getCurrentSession()) {
+			Transaction tx = s.beginTransaction();
+			s.delete(department);
+			tx.commit();
+			s.close();
+		}
 		
-		Session s = sf.openSession();
-		Transaction tx = s.beginTransaction();
-		s.delete(department);
-	
-		tx.commit();
-		s.close();
 	}
 
 }
