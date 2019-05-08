@@ -15,10 +15,7 @@ export class JokesComponent implements OnInit {
   constructor(private jokeService: JokeService) { }
 
   ngOnInit() {
-    this.getJokes();
+    this.jokeService.getJokes().subscribe(jokes => {this.jokes = jokes});
    }
-
-   getJokes(): void{
-     this.jokeService.getJokes().subscribe(jokes => this.jokes);
-   }
+   
 }

@@ -1,4 +1,3 @@
-<h2>Here is a joke:</h2>
-<li>
-  <span class="badge">{{joke.setup}}</span> {{joke.punchline}}
-</li>
+<app-joke-item *ngFor="let joke of jokes" [joke]="joke">
+  <li>{{ joke.setup }}</li>
+</app-joke-item>

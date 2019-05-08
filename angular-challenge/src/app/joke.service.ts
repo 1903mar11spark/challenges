@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
 import { Joke } from './joke';
 import { MessageService } from './message.service';
@@ -14,27 +13,16 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 export class JokeService {
 
-  private jokeUrl = 'https://official-joke-api.appspot.com/random_joke';
-
   constructor( private http: HttpClient,
     private messageService: MessageService) { }
 
+    jokeUrl: string = 'https://official-joke-api.appspot.com/random_ten';
   getJokes(): Observable<Joke[]>{
-    return this.http.get<Joke[]>(this.jokeUrl)
-    .pipe(
-      tap(_ => this.log('fetched joke')),
-    catchError(this.handleError<Joke[]>('getJokes', [])));
+    return this.http.get<Joke[]>(`${this.jokeUrl}`);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string){
-    this.messageService.add(`JokeService: ${message}`);
+  toggleCompleted(joke:Joke):Observable<any> {
+    const url = `${this.jokeUrl}/${joke.id}`;
+    return this.http.put(url, joke, httpOptions);
   }
 }
