@@ -1,9 +1,11 @@
 <p>
   questions works!
 </p>
-<ul *ngIf="responses$ | async as responses else noData">
-  <li *ngFor="let response of responses">
-      {{response.catagory}}
+ <button (click)="getQs()">get Questions</button>
+<li *ngFor="let quest of quests.results" > 
+     <h4> {{quest.category}}</h4>
+     <p>{{quest.question}}</p>
+     <p *ngIf="display">{{quest.correct_answer}}</p>
+     <a (click)="showA()">show answer</a>"
   </li> 
-</ul>
-<ng-template #noData>No Data Available</ng-template>
+
